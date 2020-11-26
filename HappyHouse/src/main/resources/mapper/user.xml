@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.house.repository.UserRepository">
+	<select id="login" parameterType="map" resultType="UserDto">
+		select id, name, addr, phone
+		from user
+		where id = #{userId} and password = #{userPw}
+	</select>
+	
+	<insert id="signUp" parameterType="map">
+		insert into user(id, password, name, addr, phone) values (#{userid}, #{userpwd}, #{username}, #{address}, #{phone})
+	</insert>
+	
+	<update id="modify" parameterType="map">
+		update user set password = #{userpwd}, name = #{username}, addr = #{address}, phone = #{phone}
+		where id = #{userid}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from user
+		where id = #{userid}
+	</delete>
+</mapper>
